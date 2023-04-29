@@ -1,4 +1,4 @@
-<?php $this->layout('_theme');?>
+<?php $this->layout('_theme-auth'); ?>
 
 <article class="auth">
     <div class="auth_content container content">

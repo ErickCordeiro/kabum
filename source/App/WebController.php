@@ -2,8 +2,10 @@
 
 namespace Source\App;
 
+use Source\Services\ClientServices;
 use Source\Core\Controller;
 use Source\Models\Auth;
+use Source\Models\Client;
 
 /**
  * Class Web
@@ -39,6 +41,7 @@ class WebController extends Controller
 
         echo $this->view->render("home", [
             "head" => $head,
+            "clients" => (new Client())->find()->fetch(true)
         ]);
     }
 

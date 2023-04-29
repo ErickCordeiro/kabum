@@ -112,4 +112,21 @@ $(function () {
             }
         });
     });
+
+    //Removendo Itens
+    $("[data-remove]").click(function (e) {
+        var remove = confirm("ATENÇÃO: Essa ação não pode ser desfeita! Tem certeza que deseja excluir esse lançamento?");
+        var load = $(".ajax_load");
+
+        if (remove === true) {
+            load.fadeIn(200).css("display", "flex");
+            $.post($(this).data("remove"), function (response) {
+                //redirect
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                    load.fadeOut(200);
+                }
+            }, "json");
+        }
+    });
 });

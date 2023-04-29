@@ -1,2 +1,3 @@
 vendor/
 source/Boot/Config.php
+.htaccess
