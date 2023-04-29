@@ -1,0 +1,64 @@
+version: '3.7'
+
+# Networks
+networks:
+  # Internal network
+  internal:
+    driver: bridge
+
+# Volumes
+volumes:
+  # MySQL volume
+  kabum-mysql_data:
+    driver: local
+
+services:
+
+  # api
+  kabum-apache:
+    image: webdevops/php-apache-dev:8.2
+    container_name: kabum-apache
+    networks:
+      - internal
+    working_dir: /var/www/app
+    volumes:
+      - .:/var/www/app
+    depends_on:
+      - kabum-mysql
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app
+      - PHP_DEBUGGER="xdebug"
+      - XDEBUG_REMOTE_AUTOSTART=On
+      - XDEBUG_REMOTE_CONNECT_BACK=Off
+      - XDEBUG_REMOTE_HOST=host.docker.internal
+      - XDEBUG_REMOTE_PORT=9090
+      - XDEBUG_PROFILER_ENABLE=Off
+      - PHP_DATE_TIMEZONE=UTC
+      - PHP_DISPLAY_ERRORS=0
+      - WEB_DOCUMENT_INDEX=index.php
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=86400
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=500M
+    expose:
+      - 8000
+    ports:
+      - 8000:80
+
+  # MySQL
+  kabum-mysql:
+    image: mysql:5.7
+    container_name: kabum-mysql
+    networks:
+      - internal
+    working_dir: /var/www/app
+    volumes:
+      - kabum-mysql_data:/var/lib/mysql
+      - .:/var/www/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=kabum
+      - MYSQL_USER=kabum
+      - MYSQL_PASSWORD=kabum
+    ports:
+      - 3333:3306
