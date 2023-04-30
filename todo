@@ -1,4 +1,4 @@
-1 - Uma área administrativa onde o(s) usuário(s) devem acessar através de login e senha.
+1 - Uma área administrativa onde o(s) usuário(s) devem acessar através de login e senha. OK
 
 2 - Criar um gerenciador de clientes (Listar, Incluir, Editar e Excluir)
 
@@ -17,10 +17,10 @@ Requisitos Técnicos
 
 Diferencial
 
-1- Utilização dos princípios SOLID
+1- Utilização dos princípios SOLID OK
 
 2- Testes automatizados
 
-3- Camadas desacopladas
+3- Camadas desacopladas OK
 
-4- Escalabilidade
+4- Escalabilidade OK

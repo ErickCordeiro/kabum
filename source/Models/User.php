@@ -22,7 +22,6 @@ class User extends Model
      * @param string $lastName
      * @param string $email
      * @param string $password
-     * @param string|null $document
      * @return User
      */
     public function bootstrap(
@@ -30,14 +29,12 @@ class User extends Model
         string $lastName,
         string $email,
         string $password,
-        string $document = null
     ): User
     {
         $this->first_name = $firstName;
         $this->last_name = $lastName;
         $this->email = $email;
         $this->password = $password;
-        $this->document = $document;
         return $this;
     }
 

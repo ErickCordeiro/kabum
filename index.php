@@ -21,13 +21,21 @@ $route = new Router(url(), ":");
 $route->namespace("Source\App");
 $route->get("/", "WebController:home");
 
+//TODO: Não foi utilizado os metodos PUT e DELETE pois o componente de Router configurado não tem suporte
 $route->get("/cliente", "ClientController:create");
 $route->post("/cliente", "ClientController:create");
-
-//TODO: Não foi utilizado os metodos PUT e DELETE pois o componente de Router configurado não tem suporte
 $route->get("/cliente/editar/{id}", "ClientController:edit");
 $route->post("/cliente/update/{id}", "ClientController:update");
 $route->post("/cliente/delete/{id}", "ClientController:destroy");
+
+
+## Adresses
+$route->get("/enderecos", "AddressesController:index");
+$route->get("/enderecos/novo", "AddressesController:create");
+$route->post("/enderecos/novo", "AddressesController:create");
+$route->get("/enderecos/editar/{id}", "AddressesController:edit");
+$route->post("/enderecos/update/{id}", "AddressesController:update");
+$route->post("/enderecos/delete/{id}", "AddressesController:destroy");
 
 ## Authentication routes
 $route->get("/cadastrar", "AuthController:register");

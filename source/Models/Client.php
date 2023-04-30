@@ -105,7 +105,7 @@ class Client extends Model
     public function address(): ?Address
     {
         if ($this->id) {
-            return (new Address())->find("user_id={$this->id}")->fetch();            
+            return (new Address())->find("client_id={$this->id}")->fetch();            
         }
 
         return null;

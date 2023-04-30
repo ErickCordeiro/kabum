@@ -109,7 +109,7 @@ class AuthController extends Controller {
 
             //Efetuando o registro
             if ($auth->register($user)) {
-                $json['redirect'] = url("/confirma");
+                $json['redirect'] = url("/entrar");
             } else {
                 $json['message'] = $auth->message()->render();
             }

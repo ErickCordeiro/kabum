@@ -56,20 +56,6 @@ class Auth extends Model
             return false;
         }
 
-
-        $view = new View(__DIR__ . "/../../shared/views/email");
-        $message = $view->render("confirm", [
-            "first_name" => $user->first_name,
-            "confirm_link" => url("/obrigado/" . base64_encode($user->email))
-        ]);
-
-        (new Email())->bootstrap(
-            "Ative sua conta na " . CONF_SITE_NAME,
-            $message,
-            $user->email,
-            "{$user->first_name} {$user->last_name}"
-        )->send();
-
         return true;
     }
 
